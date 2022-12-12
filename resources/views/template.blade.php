@@ -7,11 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <style>
+        .content{
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
     @includeIf('header')
 
-    @yield('content')
+    <div class="w-[100vw] pt-[3rem] content">
+        @yield('content')
+    </div>
+
 
     @includeIf('footer')
 </body>

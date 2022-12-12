@@ -18,7 +18,7 @@ class User extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('name');
-            $table->timestamp('birtdate');
+            $table->timestamp('birthdate');
             $table->string('address');
             $table->string('education');
             $table->string('certification');
