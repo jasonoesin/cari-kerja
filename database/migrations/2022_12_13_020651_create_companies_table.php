@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class User extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,12 @@ class User extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('password');
             $table->string('name');
-            $table->timestamp('birthdate');
+            $table->string('description');
             $table->string('address');
-            $table->string('education');
-            $table->string('certification');
-            $table->string('voluntary_experience');
-            $table->string('work_experience');
             $table->timestamps();
-
         });
     }
 
@@ -36,6 +29,6 @@ class User extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('companies');
     }
 }
