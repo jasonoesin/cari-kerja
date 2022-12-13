@@ -1,11 +1,16 @@
 @extends('template')
 
+@section('title', 'Job Detail')
+
 @section('content')
 
     <div class="bg-[#f3f3f3] w-full flex px-16 py-4 gap-4 text-blue-600 font-bold">
         <div class="">Jobs</div>
+        <div class="text-gray-400">/</div>
         <div class="">Location</div>
+        <div class="text-gray-400">/</div>
         <div class="">Jakarta</div>
+        <div class="text-gray-400">/</div>
         <div class="">Design UI/UX</div>
     </div>
 
