@@ -1,8 +1,8 @@
 <header>
-    <div class="fixed bg-white w-full text-black border-b px-16 py-4 flex justify-between">
+    <div class="fixed bg-white w-full text-black border-b px-16 py-4 flex justify-between z-[10]">
         <div class="LEFT flex gap-4">
-            <a class="">JOBS</a>
-            <a class="">COMPANIES</a>
+            <a href="{{url('/jobs')}}" class="cursor-pointer">JOBS</a>
+            <a href="{{url('/companies')}}" class="cursor-pointer">COMPANIES</a>
         </div>
         <div class="RIGHT flex gap-4">
             <a class="">SIGN UP</a>
