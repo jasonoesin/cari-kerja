@@ -13,4 +13,15 @@ Route::get('/jobs', function () {
 
 Route::get('/companies',[CompanyController::class, 'index']);
 
+Route::get('/company/register', function () {
+    return view('company-register');
+});
+
 Route::get('/company/{id}',[CompanyController::class, 'detail']);
+
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+

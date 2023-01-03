@@ -19,7 +19,6 @@
                             </div>
                         </div>
 
-
                         <div class="grid grid-cols-2 w-[50%]">
                             <div class="text-gray-500">Location</div>
                             <div class="">{{$company->address}}</div>
