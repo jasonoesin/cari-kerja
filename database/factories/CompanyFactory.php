@@ -29,6 +29,7 @@ class CompanyFactory extends Factory
 
         return [
             'name' => $this->faker->company(),
+            'size' => 100,
             'description' => $this->faker->text(300),
             'address'=> $this->faker->randomElement($address),
             'industry'=> $this->faker->randomElement($industries),

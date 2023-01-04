@@ -17,6 +17,8 @@ Route::get('/company/register', function () {
     return view('company-register');
 });
 
+Route::post('/company/register',[CompanyController::class, 'store']);
+
 Route::get('/company/{id}',[CompanyController::class, 'detail']);
 
 

@@ -22,4 +22,13 @@ class CompanyController extends Controller
             'company'=> $company
         ]);
     }
+
+    public function store(Request $request){
+
+        $company = Company::create($request->except('_token'));
+
+        return view('company-detail', [
+            'company'=> $company
+        ]);
+    }
 }
