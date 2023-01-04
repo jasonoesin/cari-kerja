@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -25,7 +26,26 @@ class CompanyController extends Controller
 
     public function store(Request $request){
 
-        $company = Company::create($request->except('_token'));
+        $request->validate([
+            "name"=>"required",
+            "logo"=>"required",
+            "website"=>"required",
+            "size"=>"required",
+            "industry"=>"required",
+            "description"=>"required",
+            "address"=>"required"
+        ]);
+
+        $company = Company::create($request->except('_token', "logo"));
+
+        $infoPath = pathinfo(public_path('/uploads/my_image.jpg'));
+
+        $extension = $infoPath['extension'];
+
+        Storage::disk("public")->putFileAs('/company/' . $company->id , $request->file('logo'), "logo.".$extension);
+
+        $company->image = "/company/" . $company->id . "/logo.". $extension;
+        $company->save();
 
         return view('company-detail', [
             'company'=> $company
