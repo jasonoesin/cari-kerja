@@ -22,6 +22,8 @@ class CreateCompaniesTable extends Migration
             $table->string('address');
             $table->string('industry');
             $table->longText('image')->default("");
+            $table->foreignId("user_id")->nullable()->references('id')->on("users")
+                ->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

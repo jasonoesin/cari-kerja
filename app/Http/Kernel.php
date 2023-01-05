@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\companyMade;
+use App\Http\Middleware\isCompany;
 use App\Http\Middleware\isGuest;
 use App\Http\Middleware\isLoggedIn;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -66,6 +68,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isLoggedIn' => isLoggedIn::class,
-        'isGuest'=> isGuest::class
+        'isGuest'=> isGuest::class,
+        'companyMade'=> companyMade::class
     ];
 }

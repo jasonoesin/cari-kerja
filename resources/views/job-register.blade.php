@@ -3,7 +3,6 @@
 @section('title', "Create a Job")
 
 @section('content')
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
 
     <div class="px-16 py-4 text-[2rem] flex flex-col gap-8 mt-12">
 

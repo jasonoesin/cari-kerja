@@ -10,7 +10,6 @@ Route::get('/', function () {
     return view('job-detail');
 });
 
-
 // Jobs Route
 Route::get('/jobs', function () {
     return view('job');
@@ -30,13 +29,16 @@ Route::get('/companies',[CompanyController::class, 'index']);
 Route::prefix('/company/')->group(function(){
     Route::get('register', function () {
         return view('company-register');
-    });
+    })->middleware(['companyMade']);
     Route::post('register',[CompanyController::class, 'store']);
     Route::get('{id}',[CompanyController::class, 'detail']);
 });
 
+
 // Auth Routes
+Route::get('logout',[AuthController::class, "logout"]);
 Route::group(['prefix'=>'/', 'middleware'=> 'isGuest'], function(){
+
     Route::group(['prefix'=> 'register'], function(){
         Route::get('/',[AuthController::class, "register_view"]);
         Route::post('/',[AuthController::class, "register"]);
