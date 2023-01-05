@@ -8,7 +8,11 @@
             <div class="!ITEM relative p-4 border border-[#777777]/40 rounded w-full text-[1rem] flex flex-col gap-4 bg-white drop-shadow-md cursor-pointer">
                 <div class="!TOP flex gap-8 flex relative w-full items-center">
                     <div class="w-[10rem] h-[10rem] flex items-center justify-center">
-                        <img class="w-[7rem] h-[7rem] object-cover" src="{{$company->image}}" alt=""/>
+                        @if(Str::contains($company->image, 'http'))
+                            <img class="w-[7rem] h-[7rem] object-cover" src="{{$company->image}}" alt=""/>
+                        @else
+                            <img class="w-[7rem] h-[7rem] object-cover" src="{{url("storage/$company->image")}}" alt=""/>
+                        @endif
                     </div>
 
                     <div class="flex flex-col w-full gap-1">

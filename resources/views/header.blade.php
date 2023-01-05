@@ -5,8 +5,8 @@
             <a href="{{url('/companies')}}" class="cursor-pointer">COMPANIES</a>
         </div>
         <div class="RIGHT flex gap-4">
-            <a class="">SIGN UP</a>
-            <a class="">LOGIN</a>
+            <a href="{{url('/register')}}">SIGN UP</a>
+            <a href="{{url('/login')}}" class="">LOGIN</a>
         </div>
     </div>
 </header>

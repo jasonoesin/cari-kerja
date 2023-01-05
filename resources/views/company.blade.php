@@ -9,7 +9,11 @@
                 <a href="{{url("/company/$item->id}")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
                 <div class="!TOP flex gap-8 flex col relative">
                     <div class="">
-                        <img class="w-[5rem] h-[5rem]" src="{{$item->image}}" alt=""/>
+                        @if(Str::contains($item->image, 'http'))
+                            <img class="w-[5rem] h-[5rem] object-cover" src="{{$item->image}}" alt=""/>
+                        @else
+                            <img class="w-[5rem] h-[5rem] object-cover" src="{{url("storage/$item->image")}}" alt=""/>
+                        @endif
                     </div>
 
                     <div class="flex flex-col">
