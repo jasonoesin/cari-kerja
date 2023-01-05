@@ -1,16 +1,18 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
-use http\Env\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('job-detail');
+    return redirect('/jobs');
 });
 
 // Jobs Route
+Route::get('/job/{id}', [JobController::class, 'detail']);
+Route::get('/jobs/bookmark', [BookmarkController::class, 'index']);
 Route::get('/jobs', [JobController::class, 'index']);
 
 Route::prefix('/job')->group(function(){
@@ -33,6 +35,8 @@ Route::prefix('/company/')->group(function(){
     Route::get('{id}/jobs',[JobController::class, 'company_jobs']);
 });
 
+// Bookmark Routes
+Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark']);
 
 // Auth Routes
 Route::get('logout',[AuthController::class, "logout"]);

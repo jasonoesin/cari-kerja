@@ -43,4 +43,10 @@ class JobController extends Controller
             'jobs' => $company->jobs
         ]);
     }
+
+    public function detail($id){
+        return view('job-detail', [
+            'job' =>  Job::find($id)
+        ]);
+    }
 }

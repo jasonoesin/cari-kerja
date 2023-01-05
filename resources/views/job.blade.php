@@ -10,16 +10,14 @@
     </div>
 
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8">
-
         <div class="!GRID grid grid-cols-3 gap-4">
             @foreach($jobs as $job)
-                <a href="{{url("./job/$job->id")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
+                <a href="{{url("./job/$job->id")}}"  class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
                     <div class="!TOP flex gap-8 flex col relative">
                         <div class="">
                             <?php
                                 $image_url = $job->company->image;
                             ?>
-
                             <img class="w-[5rem] h-[5rem] object-cover" src="{{url("/storage/$image_url")}}" alt=""/>
                         </div>
 
@@ -30,11 +28,33 @@
                             </div>
                         </div>
 
-                        <div class="absolute right-0 text-[#777777]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                            </svg>
+                        <div id="{{"bookmark_$job->id"}}" class="absolute right-0 text-[#777777]">
+                                <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 relative z-[50]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                                </svg>
                         </div>
+
+                        <script>
+                            $('{{"#bookmark_$job->id"}}').click(function(e) {
+                                var current = $(this)
+                                e.preventDefault();
+
+                                $.ajax({
+                                    type: "POST",
+                                    crossDomain: true,
+                                    url: "{{url('/bookmark/' . $job->id)}}",
+                                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                    success: function(response) {
+                                        if (response) {
+                                            if(current.children("svg").attr('fill') === "currentColor")
+                                                current.children("svg").attr('fill',"none");
+                                            else
+                                                current.children("svg").attr('fill',"currentColor");
+                                        }
+                                    }
+                                });
+                            })
+                        </script>
                     </div>
                     <div class="!BOTTOM flex flex-col gap-1">
                         <div class="!LOCATION flex items-center gap-2">

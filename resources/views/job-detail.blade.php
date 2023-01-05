@@ -17,18 +17,20 @@
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 ">
         <div class="!TOP flex gap-8 flex col border-b w-[60%] pb-8 border-b-2">
             <div class="">
-                <img class="w-[5rem]" src="https://images.glints.com/unsafe/160x0/glints-dashboard.s3.amazonaws.com/company-logo/b5d61d1657b3a2b52a0eac9674160707.jpg" alt=""/>
+                @php
+                    $url = $job->company->image
+                @endphp
+                <img class="w-[5rem] h-[5rem] object-cover" src="{{url("storage/$url")}}" alt=""/>
             </div>
 
             <div class="flex flex-col">
-                <div class="font-bold">Design UI/UX</div>
+                <div class="font-bold">{{$job->title}}</div>
 
                 <div class="text-[1rem] flex flex-col">
-                    <div class="">PT ELANG MANAJEMEN INVESTASI</div>
-                    <div class="mt-2">IDR 20,000,000 - 30,000,000/Month</div>
-                    <div class="">Design</div>
-                    <div class="">Full-time</div>
-                    <div class="">5 - 10 years of experience</div>
+                    <div class="">{{$job->company->name}}</div>
+                    <div class="mt-2">IDR {{$job->start_salary}} - {{$job->end_salary}}</div>
+                    <div class="">{{$job->type}}</div>
+                    <div class="">{{$job->experience}} years of experience</div>
                 </div>
             </div>
         </div>
@@ -37,9 +39,10 @@
             <div class="font-bold">
                 <div class="">Must Have Skills</div>
                 <div class="flex py-4 gap-2">
-                    <div class="font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border">Managerial Skills</div>
-                    <div class="font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border">iOS Design</div>
-                    <div class="font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border">Android Design</div>
+
+                    @foreach(json_decode($job->skills) as $skill)
+                        <div class="font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border">{{$skill}}</div>
+                    @endforeach
                 </div>
             </div>
             <div class="mt-4">
@@ -48,11 +51,7 @@
                     <div class="">Job Description :</div>
 
                     <div class="">
-                        Overall responsible for the app/web interface visual design of the securities company's trading platform, controlling company platform design style and optimizing the design specifications;
-                        Demonstrate high quality design practices, this includes participation in all aspects of UX, user and competitors research, ideation, strategy, interaction design and visual design;
-                        Have a deep understanding of securities/stock brokerage business, be good at conception and creativity, and use a variety of design methods to complete design delivery;
-                        Be sensitive to design trends and data, understand the competitor, and actively explore any integration based on trends and other financial products;
-                        Lead and mentor a team of designers
+                        {{$job->description}}
                     </div>
 
                 </div>
@@ -61,36 +60,38 @@
         </div>
 
 
-        <div class="!ABOUT-COMPANY p-4 border rounded w-[60%] text-[1rem] flex flex-col gap-4">
+        <a href="{{url("/company/" . $job->company->id)}}" class="!ABOUT-COMPANY p-4 border rounded w-[60%] text-[1rem] flex flex-col gap-4 hover:drop-shadow-xl bg-white">
 
             <div class="font-bold">About The Company</div>
 
             <div class="!TOP flex gap-8 flex col">
                 <div class="">
-                    <img class="w-[5rem]" src="https://images.glints.com/unsafe/160x0/glints-dashboard.s3.amazonaws.com/company-logo/b5d61d1657b3a2b52a0eac9674160707.jpg" alt=""/>
+                    @php
+                       $url = $job->company->image
+                    @endphp
+                    <img class="w-[5rem] h-[5rem] object-cover" src="{{url("storage/$url")}}" alt=""/>
                 </div>
 
                 <div class="flex flex-col">
-                    <div class="font-bold">Design UI/UX</div>
+                    <div class="font-bold">{{$job->company->name}}</div>
 
                     <div class="text-[1rem] flex flex-col">
-                        <div class="">PT ELANG MANAJEMEN INVESTASI</div>
-                        <div class="text-gray-600">Financial Services 51 - 200 employees</div>
+                        <div class="text-gray-600">{{$job->company->industry}} {{$job->company->size}} employees</div>
                     </div>
                 </div>
             </div>
 
 
             <div class="">
-                The company's main business focuses on securities brokerage, securities consulting and asset management, and is committed to become Hong Kong and South East Asia’s most innovative, fast - growing Internet securities company.The company aims to serve global capital through innovative financial technology to invest in the securities markets of Hong Kong and Southeast Asian countries,
+                {{$job->company->description}}
             </div>
             <div class="font-bold">
-                Office address
+                Office Location
             </div>
             <div class="">
-                ASG Tower Lt. 11 Unit H Jl. Pantai Indah Kapuk No.1, RT.6/RW.2, Kamal Muara, Kec. Penjaringan,Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14470
+                {{$job->company->address}}
             </div>
-        </div>
+        </a>
     </div>
 @endsection
 
