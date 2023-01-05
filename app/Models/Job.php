@@ -18,6 +18,7 @@ class Job extends Model
         "experience",
         "skills",
         "description",
+        'company_id'
     ];
 
     public function company(): BelongsTo

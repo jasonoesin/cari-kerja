@@ -22,7 +22,7 @@ class CreateJobsTable extends Migration
             $table->string('experience');
             $table->json('skills');
             $table->string('description');
-//            $table->foreignId('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -516,6 +516,21 @@ video {
 .top-6 {
   top: 1.5rem;
 }
+.right-12 {
+  right: 3rem;
+}
+.right-\[10rem\] {
+  right: 10rem;
+}
+.right-\[30rem\] {
+  right: 30rem;
+}
+.right-\[15rem\] {
+  right: 15rem;
+}
+.right-\[12\.5rem\] {
+  right: 12.5rem;
+}
 .z-\[3\] {
   z-index: 3;
 }
@@ -827,6 +842,23 @@ video {
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.bg-\[\#7f\] {
+  background-color: #7f;
+}
+.bg-\[\#7f7d\] {
+  background-color: #7f7d;
+}
+.bg-\[\#7f7d9c\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(127 125 156 / var(--tw-bg-opacity));
+}
+.bg-\[\#c5c6\] {
+  background-color: #c5c6;
+}
+.bg-\[\#c5c6d0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(197 198 208 / var(--tw-bg-opacity));
 }
 .object-cover {
   -o-object-fit: cover;

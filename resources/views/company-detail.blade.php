@@ -44,11 +44,20 @@
 
                 </div>
                 <div class="mt-2 border-b"></div>
+
+
                 <div class="flex relative w-100 pb-16">
-                    <div class="absolute right-4 bg-[#fff240] font-bold px-8 py-4 z-[3]">VIEW JOBS</div>
-                    <div class="absolute right-4 bg-[#ec272b] font-bold px-8 py-4 translate-y-1.5 translate-x-1.5 z-[2]">VIEW JOBS</div>
+
+                    @if(auth()->user()->company && auth()->user()->company->id == $company->id )
+                        <div class="absolute right-[12.5rem] bg-[#c5c6d0] font-bold px-8 py-4 z-[3]">ADD JOB</div>
+                        <div class="absolute right-[12.5rem] bg-[#7f7d9c] font-bold px-8 py-4 translate-y-1.5 translate-x-1.5 z-[2]">ADD JOB</div>
+                    @endif
+
+                    <a href="{{Request::url() . "/jobs"}}" class="absolute right-4 bg-[#fff240] font-bold px-8 py-4 z-[3]">VIEW JOBS</a>
+                    <a class="absolute right-4 bg-[#ec272b] font-bold px-8 py-4 translate-y-1.5 translate-x-1.5 z-[2]">VIEW JOBS</a>
                 </div>
             </div>
+
             <div class="!BOTTOM relative p-4 border border-[#777777]/40 rounded w-full text-[1rem] flex flex-col gap-4 bg-white drop-shadow-md cursor-pointer">
                 <div class="font-bold text-[1.4rem]">
                     Company Details

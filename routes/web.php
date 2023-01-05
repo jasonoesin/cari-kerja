@@ -11,9 +11,7 @@ Route::get('/', function () {
 });
 
 // Jobs Route
-Route::get('/jobs', function () {
-    return view('job');
-});
+Route::get('/jobs', [JobController::class, 'index']);
 
 Route::prefix('/job')->group(function(){
     Route::get('register', function () {
@@ -32,6 +30,7 @@ Route::prefix('/company/')->group(function(){
     })->middleware(['companyMade']);
     Route::post('register',[CompanyController::class, 'store']);
     Route::get('{id}',[CompanyController::class, 'detail']);
+    Route::get('{id}/jobs',[JobController::class, 'company_jobs']);
 });
 
 

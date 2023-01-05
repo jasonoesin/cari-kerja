@@ -5,8 +5,8 @@
 @section('content')
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-12">
         <div class="!GRID grid grid-cols-3 gap-4">
-            @foreach($companies as $item)
-                <a href="{{url("/company/$item->id}")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
+            @foreach($companies->reverse() as $item)
+                <a href="{{url("/company/$item->id")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
                 <div class="!TOP flex gap-8 flex col relative">
                     <div class="">
                         @if(Str::contains($item->image, 'http'))
