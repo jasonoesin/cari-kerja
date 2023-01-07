@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', "Create a Job")
+@section('title', auth()->user()->name)
 
 @section('content')
 

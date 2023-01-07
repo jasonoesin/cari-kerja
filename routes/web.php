@@ -11,17 +11,18 @@ Route::get('/', function () {
 });
 
 // Jobs Route
-Route::get('/job/{id}', [JobController::class, 'detail']);
-Route::get('/jobs/bookmark', [BookmarkController::class, 'index']);
+
+Route::get('/jobs/bookmark', [BookmarkController::class, 'index'])->middleware('isLoggedIn');
 Route::get('/jobs', [JobController::class, 'index']);
 
 Route::prefix('/job')->group(function(){
     Route::get('register', function () {
         return view('job-register');
     });
-
     Route::post('register', [JobController::class, 'register']);
 });
+
+Route::get('/job/{id}', [JobController::class, 'detail']);
 
 // Company Route
 Route::get('/companies',[CompanyController::class, 'index']);
@@ -36,7 +37,7 @@ Route::prefix('/company/')->group(function(){
 });
 
 // Bookmark Routes
-Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark']);
+Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark'])->middleware('isLoggedIn');
 
 // Auth Routes
 Route::get('profile',[AuthController::class, "profile"])->middleware('isLoggedIn');

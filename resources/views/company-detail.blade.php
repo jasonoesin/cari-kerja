@@ -49,7 +49,7 @@
                 <div class="flex relative w-100 pb-16">
 
                     @if(auth()->user() && auth()->user()->company && auth()->user()->company->id == $company->id )
-                        <div class="absolute right-[12.5rem] bg-[#c5c6d0] font-bold px-8 py-4 z-[3]">ADD JOB</div>
+                        <a href="{{url('/job/register')}}" class="absolute right-[12.5rem] bg-[#c5c6d0] font-bold px-8 py-4 z-[3]">ADD JOB</a>
                         <div class="absolute right-[12.5rem] bg-[#7f7d9c] font-bold px-8 py-4 translate-y-1.5 translate-x-1.5 z-[2]">ADD JOB</div>
                     @endif
 
