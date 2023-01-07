@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function profile(){
+        return view('profile');
+    }
+
     public function register_view(){
         return view('register');
     }

@@ -5,8 +5,8 @@
 @section('content')
 
     <div class="bg-[#f3f3f3] w-full flex px-16 py-4 gap-4 text-blue-600 font-bold">
-        <div class="">Explore</div>
-        <div class="text-[#777777]">Bookmarked</div>
+        <a href="{{url('/jobs')}}" class="text-[#777777]">Explore</a>
+        <a href="{{url('/jobs/bookmark')}}" >Bookmarked</a>
     </div>
 
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8">
@@ -29,7 +29,7 @@
                         </div>
 
                         <div id="{{"bookmark_$job->id"}}" class="absolute right-0 text-[#777777]">
-                                <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 relative z-[50]">
+                                <svg  xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 relative z-[50]">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                                 </svg>
                         </div>
@@ -46,10 +46,7 @@
                                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                                     success: function(response) {
                                         if (response) {
-                                            if(current.children("svg").attr('fill') === "currentColor")
-                                                current.children("svg").attr('fill',"none");
-                                            else
-                                                current.children("svg").attr('fill',"currentColor");
+                                            current.parent().parent().remove()
                                         }
                                     }
                                 });

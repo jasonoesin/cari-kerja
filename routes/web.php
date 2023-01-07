@@ -39,6 +39,7 @@ Route::prefix('/company/')->group(function(){
 Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark']);
 
 // Auth Routes
+Route::get('profile',[AuthController::class, "profile"])->middleware('isLoggedIn');
 Route::get('logout',[AuthController::class, "logout"]);
 Route::group(['prefix'=>'/', 'middleware'=> 'isGuest'], function(){
 
