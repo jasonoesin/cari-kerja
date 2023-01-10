@@ -23,6 +23,7 @@ Route::prefix('/job')->group(function(){
 });
 
 Route::get('/job/{id}', [JobController::class, 'detail']);
+Route::post('/job/{id}', [JobController::class, 'apply']);
 
 // Company Route
 Route::get('/companies',[CompanyController::class, 'index']);

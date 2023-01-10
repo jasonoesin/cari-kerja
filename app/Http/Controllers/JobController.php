@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apply;
 use App\Models\Company;
 use App\Models\Job;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
 {
@@ -48,5 +52,21 @@ class JobController extends Controller
         return view('job-detail', [
             'job' =>  Job::find($id)
         ]);
+    }
+
+    public function apply(Request $request, $id){
+        $apply = Apply::create([
+            'job_id' => $id,
+            'user_id'=> auth()->user()->id,
+            'apply_date' => Carbon::now(),
+            'resume'=> ''
+        ]);
+
+        Storage::disk("public")->putFileAs('/apply/' . auth()->user()->id , $request->file('resume'), $id . "_resume.pdf");
+
+        $apply->resume = "/apply/" . auth()->user()->id . "/". $id . "_resume.pdf";
+        $apply->save();
+
+        return redirect()->back();
     }
 }
