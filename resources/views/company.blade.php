@@ -35,19 +35,21 @@
             </label>
         </form>
 
-        <div class="!GRID grid grid-cols-3 gap-4">
-            @if(!$companies->all())
-                <div class="flex flex-col gap-4 justify-center items-center text-center mt-16">
-                    <img class="w-[10rem] h-[10rem]" src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/images/jobs/empty-view.png">
-                    <div class="font-bold">
-                        Sorry, there were no matching companies found.
-                    </div>
-
-                    <div class="w-[30rem]">
-                        Check your spelling or try different keywords. You can also explore your job recommendations.
-                    </div>
+        @if(!$companies->all())
+            <div class="flex flex-col gap-4 justify-center items-center text-center mt-16">
+                <img class="w-[10rem] h-[10rem]" src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/images/jobs/empty-view.png">
+                <div class="font-bold">
+                    Sorry, there were no matching companies found.
                 </div>
-            @endif
+
+                <div class="w-[30rem]">
+                    Check your spelling or try different keywords. You can also explore your job recommendations.
+                </div>
+            </div>
+        @endif
+
+        <div class="!GRID grid grid-cols-3 gap-4">
+
 
             @foreach($companies->reverse() as $item)
                 <a href="{{url("/company/$item->id")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
