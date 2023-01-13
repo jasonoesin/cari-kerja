@@ -23,7 +23,18 @@
         }
     </style>
 
-    <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-12">
+    <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-4">
+
+        <form action="{{url('/companies/search/')}}" class="search">
+            <label class="flex bg-[#ebf5fa] rounded px-3 py-2 text-[1rem] w-[30rem] gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+
+                <input value="{{ app('request')->input('value') }}" name="value" placeholder="Search for Companies" class="bg-[#ebf5fa] focus:outline-none" type="text">
+            </label>
+        </form>
+
         <div class="!GRID grid grid-cols-3 gap-4">
             @if(!$companies->all())
                 <div class="flex flex-col gap-4 justify-center items-center text-center mt-16">

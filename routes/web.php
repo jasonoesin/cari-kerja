@@ -26,11 +26,14 @@ Route::prefix('/job')->group(function(){
     Route::post('register', [JobController::class, 'register']);
 });
 
+Route::get('/jobs/search', [JobController::class, 'search']);
+
 Route::get('/job/{id}', [JobController::class, 'detail']);
 Route::post('/job/{id}', [JobController::class, 'apply']);
 
 // Company Route
 Route::get('/companies',[CompanyController::class, 'index']);
+Route::get('/companies/search',[CompanyController::class, 'search']);
 
 Route::prefix('/company/')->group(function(){
     Route::get('register', function () {

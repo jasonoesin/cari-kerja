@@ -38,6 +38,16 @@ class JobController extends Controller
         ]);
     }
 
+    public function search(Request $request){
+        $query = $request->value;
+
+        $jobs = Job::where("title","like","%$query%")->paginate(9);
+
+        return view('job',[
+            'jobs' => $jobs
+        ]);
+    }
+
     public function company_jobs($id){
         $jobs = Company::find($id)->jobs()->paginate(9);
 

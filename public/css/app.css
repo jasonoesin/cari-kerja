@@ -777,6 +777,9 @@ video {
 .rounded-3xl {
   border-radius: 1.5rem;
 }
+.rounded-md {
+  border-radius: 0.375rem;
+}
 .rounded-t {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
@@ -899,6 +902,10 @@ video {
 .bg-\[\#017eb7\] {
   --tw-bg-opacity: 1;
   background-color: rgb(1 126 183 / var(--tw-bg-opacity));
+}
+.bg-\[\#ebf5fa\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 245 250 / var(--tw-bg-opacity));
 }
 .object-cover {
   -o-object-fit: cover;
@@ -1115,5 +1122,10 @@ body{
 .hover\:drop-shadow-xl:hover {
   --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 

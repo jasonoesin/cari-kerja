@@ -17,6 +17,16 @@ class CompanyController extends Controller
         ]);
     }
 
+    public function search(Request $request){
+        $query = $request->value;
+
+        $companies = Company::where("name","like","%$query%")->paginate(9);
+
+        return view('company', [
+            'companies'=> $companies
+        ]);
+    }
+
     public function detail($id){
         $company = Company::find($id);
 
