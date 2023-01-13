@@ -2,7 +2,6 @@
 @section('title', $job->title . " at " . $job->company->name)
 
 @section('content')
-
     <div class="">
         <div class="bg-[#f3f3f3] w-full flex px-16 py-4 gap-4 text-blue-600 font-bold">
             <div class="">Jobs</div>
@@ -42,9 +41,17 @@
                     @if(auth()->user())
                         <div class="flex gap-8 mt-8 font-bold text-white text-[1rem]">
                             @if(auth()->user()->type == 'employee')
-                                <button id="apply" class="px-6 py-2 bg-blue-500 w-[10rem]">APPLY</button>
+                                @if(auth()->user()->applies->pluck('job_id')->contains($job->id))
+                                    <button id="" class="px-3 py-2 bg-gray-500 w-[10rem]">APPLIED</button>
+                                @else
+                                    <button id="apply" class="px-6 py-2 bg-blue-500 w-[10rem]">APPLY</button>
+                                @endif
                             @endif
-                            <button class="px-6 py-2 border border-blue-500 text-blue-500 border-2 w-[10rem]">BOOKMARK</button>
+                            @if(auth()->user()->bookmarks->pluck('job_id')->contains($job->id))
+                                <button class="px-4 py-2 border border-gray-500 text-gray-500 border-2 w-[10rem]">UNBOOKMARK</button>
+                            @else
+                                <button class="px-6 py-2 border border-blue-500 text-blue-500 border-2 w-[10rem]">BOOKMARK</button>
+                            @endif
                         </div>
                     @endif
                 </div>

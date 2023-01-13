@@ -7,12 +7,10 @@ use App\Models\Company;
 use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
 {
-    //
     public function register(Request $request){
         $request->validate([
             "title"=>"required",
@@ -33,7 +31,7 @@ class JobController extends Controller
     }
 
     public function index(){
-        $jobs = Job::all();
+        $jobs = Job::paginate(9);
 
         return view('job',[
             'jobs' => $jobs
@@ -41,10 +39,10 @@ class JobController extends Controller
     }
 
     public function company_jobs($id){
-        $company = Company::find($id);
+        $jobs = Company::find($id)->jobs()->paginate(9);
 
         return view('job',[
-            'jobs' => $company->jobs
+            'jobs' =>$jobs
         ]);
     }
 

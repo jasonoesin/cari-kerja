@@ -3,8 +3,41 @@
 @section('title', "Companies")
 
 @section('content')
+    <style>
+        .pagination
+        {
+            margin-top: 1rem;
+            display: flex;
+        }
+
+        .pagination > * {
+            border: 1px solid lightgray;
+            background-color: white;
+            padding: 0.25rem 0.75rem;
+            color: lightskyblue;
+        }
+
+        .active{
+            background-color: #68BBE3;
+            color: white;
+        }
+    </style>
+
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-12">
         <div class="!GRID grid grid-cols-3 gap-4">
+            @if(!$companies->all())
+                <div class="flex flex-col gap-4 justify-center items-center text-center mt-16">
+                    <img class="w-[10rem] h-[10rem]" src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/images/jobs/empty-view.png">
+                    <div class="font-bold">
+                        Sorry, there were no matching companies found.
+                    </div>
+
+                    <div class="w-[30rem]">
+                        Check your spelling or try different keywords. You can also explore your job recommendations.
+                    </div>
+                </div>
+            @endif
+
             @foreach($companies->reverse() as $item)
                 <a href="{{url("/company/$item->id")}}" class="!ITEM p-4 border border-[#777777]/40 rounded w-100 text-[1rem] flex flex-col gap-4 bg-white hover:drop-shadow-md cursor-pointer">
                 <div class="!TOP flex gap-8 flex col relative">
@@ -23,11 +56,11 @@
                         </div>
                     </div>
 
-                    <div class="absolute right-0 text-[#777777]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                        </svg>
-                    </div>
+{{--                    <div class="absolute right-0 text-[#777777]">--}}
+{{--                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">--}}
+{{--                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />--}}
+{{--                        </svg>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="!BOTTOM flex flex-col gap-1">
                     <div class="!SALARY flex items-center gap-2">
@@ -65,6 +98,10 @@
                 </div>
             </a>
             @endforeach
+        </div>
+
+        <div class="flex items-center justify-center mt-16">
+            {{$companies->links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection
