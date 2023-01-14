@@ -12,14 +12,13 @@ Route::get('/', function () {
 });
 
 // Application
-Route::get('/applications', [ApplyController::class, 'index']);
+Route::get('/applications', [ApplyController::class, 'index'])->middleware('isLoggedIn');
 
 // Jobs Route
-
 Route::get('/jobs/bookmark', [BookmarkController::class, 'index'])->middleware('isLoggedIn');
 Route::get('/jobs', [JobController::class, 'index']);
 
-Route::prefix('/job')->group(function(){
+Route::prefix('/job')->middleware('isLoggedIn')->group(function(){
     Route::get('register', function () {
         return view('job-register');
     });
@@ -50,6 +49,8 @@ Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark'])->middlewa
 
 // Auth Routes
 Route::get('profile',[AuthController::class, "profile"])->middleware('isLoggedIn');
+Route::post('profile/skills',[AuthController::class, "add_skill"])->middleware('isLoggedIn')->name('profile.skill');
+
 Route::get('logout',[AuthController::class, "logout"]);
 Route::group(['prefix'=>'/', 'middleware'=> 'isGuest'], function(){
 

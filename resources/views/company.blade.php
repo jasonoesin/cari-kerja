@@ -42,7 +42,7 @@
                     Sorry, there were no matching companies found.
                 </div>
 
-                <div class="w-[30rem]">
+                <div class="w-[30rem] text-[1.1rem]">
                     Check your spelling or try different keywords. You can also explore your job recommendations.
                 </div>
             </div>

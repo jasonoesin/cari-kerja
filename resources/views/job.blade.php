@@ -55,7 +55,7 @@
                     Sorry, there were no matching jobs found.
                 </div>
 
-                <div class="w-[30rem]">
+                <div class="w-[30rem] text-[1.1rem]">
                     Check your spelling or try different keywords. You can also explore your job recommendations.
                 </div>
             </div>
@@ -150,7 +150,6 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-
 
                             <div class="">
                                 Updated {{$job->created_at->diffForHumans()}}

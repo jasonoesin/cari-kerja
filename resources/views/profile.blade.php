@@ -103,8 +103,21 @@
                 <div class="w-[75%]">
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">SKILLS</div>
 
-                    <div class="px-2 py-8 text-center flex flex-col gap-4">
-                        <div class="">Now’s not the time to be humble. Share what you’re good at to attract the top companies.</div>
+                    <div class="px-2 py-8 flex flex-col gap-4">
+                        <div id="" class="flex flex-row gap-2 w-full flex-wrap max-w-[40rem]">
+                            @if(json_decode(auth()->user()->skills))
+                                @foreach(json_decode(auth()->user()->skills) as $skill)
+                                    <div class="cursor-pointer font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border hover:bg-[#aaaaaa] w-fit">
+                                        {{$skill}}
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        @if(!json_decode(auth()->user()->skills))
+                            <div class="text-center">
+                                Now’s not the time to be humble. Share what you’re good at to attract the top companies.
+                            </div>
+                        @endif
                         <div class="w-full flex justify-center">
                             <button id="button_skill" class="font-bold text-blue-600 flex justify-center gap-2 px-4 py-2 hover:bg-gray-200 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -240,33 +253,72 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
 
-                    <div class="mt-8  now flex flex-col gap-4">
+                    <form action="{{route('profile.skill')}}" method="POST" class="mt-8  now flex flex-col gap-4">
+                        @csrf
                         <div class="text-[1.2rem] text-center">
                             Skills
                         </div>
 
-                        <div class="flex gap-4 items-center font-semibold">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
-                            </svg>
-                            <div class="">
-                                Description (100 words maximum)*
+                        <label class="flex flex-col gap-4 font-semibold">
+                            Skills (Click on skill to remove)*
+                            <span class="flex gap-16">
+                            <input id="skill_value"
+                                   class="font-normal px-4 py-2 border border-black/30 rounded-sm w-[50%]"
+                                   placeholder="eg : Public Speaking, C++, Laravel"
+                                   type="text">
+                        <button id="add_button" class="rounded bg-black/50 w-[50%] text-white/80">Add</button>
+                        </span>
+
+                            <div id="skills_" class="flex flex-row gap-2 w-full flex-wrap max-w-[40rem]">
+                                @if(json_decode(auth()->user()->skills) != null)
+                                    @foreach(json_decode(auth()->user()->skills) as $skill)
+                                        <div class="temp_skills cursor-pointer font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border hover:bg-[#aaaaaa] w-fit">
+                                            {{$skill}}
+                                            <input name="skills[]" hidden value="{{$skill}}">
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
-                        </div>
+                        </label>
 
-                        <form action="" method="POST"  class="w-full flex flex-col gap-4">
-                            @csrf
+                        <script>
+                            $(function (){
+                                index = 0
 
-                            <textarea name="description"
-                                      class="font-normal min-h-[5rem] px-4 py-2 border border-black/30 rounded-sm w-full"
-                                      placeholder="Brief description about you"
-                                      type="text"></textarea>
+                                $('#add_button').click((e)=> {
+                                    e.preventDefault()
+                                    var main = $('<div class="w-fit"> </div>')
+
+                                    var div = $('<input hidden>')
+                                    main.text($('#skill_value').val())
+                                    main.attr('class', "cursor-pointer font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border hover:bg-[#aaaaaa] w-fit")
+                                    div.val($('#skill_value').val())
+                                    div.attr('name', "skills[]")
+                                    index++
+
+                                    main.append(div)
+
+                                    $('#skills_').append(main)
+
+                                    main.click(function(){
+                                        $(this).hide()
+                                    })
+                                })
+
+                                $('.temp_skills').click(function(){
+                                    $(this).remove()
+                                })
+                            });
+                        </script>
+
+                        <div class="w-full flex flex-col gap-4">
+
 
                             <button type="submit" class="bg-[#017eb7] px-16 py-6 font-bold w-full text-white text-[1rem] flex items-center justify-center gap-2" id="btn-file" >
-                                UPDATE NOW
+                                SAVE
                             </button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

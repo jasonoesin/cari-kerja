@@ -4,14 +4,13 @@
 
 @section('content')
     <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8">
-
         @if(!$applies->all())
             <div class="flex flex-col gap-4 justify-center items-center text-center mt-16">
                 <img class="w-[10rem] h-[10rem]" src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/images/jobs/empty-view.png">
                 <div class="font-bold">
                     Sorry, there were no matching applications found.
                 </div>
-                <div class="">
+                <div class="text-[1.1rem]">
                     Proceed to fill your profile descriptions and apply on different jobs available in CariKerja !
                 </div>
             </div>
