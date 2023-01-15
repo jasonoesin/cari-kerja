@@ -81,12 +81,16 @@ class AuthController extends Controller
     }
 
     public function add_skill(Request $request){
-//        $request->validate([
-//            "skills"=>"required",
-//        ]);
-
         $user = User::find(\auth()->user()->id);
         $user->skills = json_encode($request['skills']);
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function add_description(Request $request){
+        $user = User::find(\auth()->user()->id);
+        $user->description = $request->description;
         $user->save();
 
         return redirect()->back();

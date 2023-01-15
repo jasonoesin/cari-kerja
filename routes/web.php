@@ -50,6 +50,7 @@ Route::post('/bookmark/{id}', [BookmarkController::class, 'bookmark'])->middlewa
 // Auth Routes
 Route::get('profile',[AuthController::class, "profile"])->middleware('isLoggedIn');
 Route::post('profile/skills',[AuthController::class, "add_skill"])->middleware('isLoggedIn')->name('profile.skill');
+Route::post('profile/description',[AuthController::class, "add_description"])->middleware('isLoggedIn')->name('profile.description');
 
 Route::get('logout',[AuthController::class, "logout"]);
 Route::group(['prefix'=>'/', 'middleware'=> 'isGuest'], function(){

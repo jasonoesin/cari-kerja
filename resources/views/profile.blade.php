@@ -52,8 +52,17 @@
                 <div class="w-[75%]">
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">ABOUT ME</div>
 
-                    <div class="px-2 py-8 text-center flex flex-col gap-4">
-                        <div class="">Tell employers what you can bring to the table.</div>
+                    <div class="px-2 py-8 flex flex-col gap-4">
+                        <div class="">
+                            @if(!auth()->user()->description)
+                                <div class="text-center">
+                                    Tell employers what you can bring to the table.
+                                </div>
+
+                            @else
+                                {{auth()->user()->description}}
+                            @endif
+                        </div>
                         <div class="w-full flex justify-center">
                             <button id="button_desc" class="font-bold text-blue-600 flex justify-center gap-2 px-4 py-2 hover:bg-gray-200 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -134,7 +143,7 @@
 
         <div id="modal_desc" class="!MODAL w-full h-[100vh] bg-black/50 fixed inset-0 z-10 flex justify-center flex-col hidden">
             <div class="w-full flex justify-center">
-                <div class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
+                <form action="{{route('profile.description')}}" method="POST"  class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="close w-6 h-6 absolute top-4 right-4 cursor-pointer">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -153,20 +162,21 @@
                             </div>
                         </div>
 
-                        <form action="" method="POST"  class="w-full flex flex-col gap-4">
+                        <div  class="w-full flex flex-col gap-4">
                             @csrf
 
-                            <textarea name="description"
+                            <textarea
+                                name="description"
                                       class="font-normal min-h-[5rem] px-4 py-2 border border-black/30 rounded-sm w-full"
                                       placeholder="Brief description about you"
-                                      type="text"></textarea>
+                                      type="text">{{auth()->user()->description ? auth()->user()->description : ""}}</textarea>
 
                             <button type="submit" class="bg-[#017eb7] px-16 py-6 font-bold w-full text-white text-[1rem] flex items-center justify-center gap-2" id="btn-file" >
                                 UPDATE NOW
                             </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
