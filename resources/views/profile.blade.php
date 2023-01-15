@@ -180,79 +180,117 @@
             </div>
         </div>
 
-        <div id="modal_work" class="!MODAL w-full h-[100vh] bg-black/50 fixed inset-0 z-10 flex justify-center flex-col hidden">
-            <div class="w-full flex justify-center">
-                <div class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
+        <div id="modal_work" class="!MODAL pt-[6rem] overflow-y-scroll w-full min-h-[100vh] bg-black/50 fixed inset-0 z-10 flex justify-center flex-col hidden">
+            <div class="w-full flex justify-center items-center my-[2rem]">
+                <form action="{{route('profile.experience')}}" method="POST" class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
+                    @csrf
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="close w-6 h-6 absolute top-4 right-4 cursor-pointer">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
 
-                    <div class="mt-8  now flex flex-col gap-4">
+                    <div class="mt-8  now flex flex-col gap-4 w-full">
                         <div class="text-[1.2rem] text-center">
-                            About Me
+                            Work Experiences
                         </div>
 
-                        <div class="flex gap-4 items-center font-semibold">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
-                            </svg>
-                            <div class="">
-                                Description (100 words maximum)*
+                        <div class="flex gap-4 items-center font-semibold w-full">
+                            <div class="text-[1rem] flex flex-col gap-8 w-full">
+                                <label class="flex flex-col gap-4 font-semibold w-full">
+                                    Job Title*
+                                    <input
+                                        name="title"
+                                        class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                        placeholder="eg: Data Science Lead, Marketing Manager"
+                                        type="text">
+                                </label>
+
+                                <label class="flex flex-col gap-4 font-semibold">
+                                    Job Type*
+                                    <input name="type"
+                                           class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                           placeholder="eg: Fulltime, Part-Time, Freelancer"
+                                           type="text">
+                                </label>
+                                <label class="flex flex-col gap-4 font-semibold">
+                                    Company Name*
+                                    <input name="company_name"
+                                           class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                           placeholder="Input the company name you have worked on"
+                                           type="text">
+                                </label>
+
+                                <label class="flex flex-col gap-4 font-semibold">
+                                    Job Description*
+                                    <textarea name="description"
+                                              class="font-normal min-h-[10rem] px-4 py-2 border border-black/30 rounded-sm w-full"
+                                              placeholder="Brief description about the job's position"
+                                              type="text"></textarea>
+                                </label>
                             </div>
                         </div>
 
-                        <form action="" method="POST"  class="w-full flex flex-col gap-4">
-                            @csrf
+                        <div   class="w-full flex flex-col gap-4">
 
-                            <textarea name="description"
-                                      class="font-normal min-h-[5rem] px-4 py-2 border border-black/30 rounded-sm w-full"
-                                      placeholder="Brief description about you"
-                                      type="text"></textarea>
 
                             <button type="submit" class="bg-[#017eb7] px-16 py-6 font-bold w-full text-white text-[1rem] flex items-center justify-center gap-2" id="btn-file" >
-                                UPDATE NOW
+                                ADD WORK EXPERIENCE
                             </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
-        <div id="modal_education" class="!MODAL w-full h-[100vh] bg-black/50 fixed inset-0 z-10 flex justify-center flex-col hidden">
-            <div class="w-full flex justify-center">
-                <div class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
+        <div id="modal_education" class="!MODAL overflow-y-scroll w-full min-h-[100vh] bg-black/50 fixed inset-0 z-10 flex justify-center flex-col hidden">
+            <div class="w-full flex justify-center items-center my-[2rem]">
+                <form action="{{route('profile.education')}}" method="POST" class="relative WHITE-CARD w-[30rem] bg-white rounded h-fit pb-8 opacity-100 py-4 px-8">
+                    @csrf
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="close w-6 h-6 absolute top-4 right-4 cursor-pointer">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
 
-                    <div class="mt-8  now flex flex-col gap-4">
+                    <div class="mt-8  now flex flex-col gap-4 w-full">
                         <div class="text-[1.2rem] text-center">
-                            About Me
+                            Education
                         </div>
 
-                        <div class="flex gap-4 items-center font-semibold">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
-                            </svg>
-                            <div class="">
-                                Description (100 words maximum)*
+                        <div class="flex gap-4 items-center font-semibold w-full">
+                            <div class="text-[1rem] flex flex-col gap-8 w-full">
+                                <label class="flex flex-col gap-4 font-semibold w-full">
+                                    School*
+                                    <input
+                                        name="school"
+                                        class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                        placeholder="eg: Binus University"
+                                        type="text">
+                                </label>
+
+                                <label class="flex flex-col gap-4 font-semibold">
+                                    Degree*
+                                    <input name="degree"
+                                           class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                           placeholder="eg: Bachelor Degree"
+                                           type="text">
+                                </label>
+                                <label class="flex flex-col gap-4 font-semibold">
+                                    Field of Study*
+                                    <input name="field_of_study"
+                                           class="font-normal px-4 py-2 border border-black/30 rounded-sm w-full"
+                                           placeholder="eg: Computer Science"
+                                           type="text">
+                                </label>
                             </div>
                         </div>
 
-                        <form action="" method="POST"  class="w-full flex flex-col gap-4">
-                            @csrf
+                        <div   class="w-full flex flex-col gap-4">
 
-                            <textarea name="description"
-                                      class="font-normal min-h-[5rem] px-4 py-2 border border-black/30 rounded-sm w-full"
-                                      placeholder="Brief description about you"
-                                      type="text"></textarea>
 
                             <button type="submit" class="bg-[#017eb7] px-16 py-6 font-bold w-full text-white text-[1rem] flex items-center justify-center gap-2" id="btn-file" >
-                                UPDATE NOW
+                                ADD EDUCATION
                             </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -337,18 +375,23 @@
     <script>
         $(function(){
             $("#button_desc").click(()=> {
+                $("body").css("overflow", "hidden");
                 $("#modal_desc").css("display", "flex").fadeIn(200)
             })
 
             $("#button_work").click(()=> {
+                $("body").css("overflow", "hidden");
                 $("#modal_work").css("display", "flex").fadeIn(200)
+
             })
 
             $("#button_education").click(()=> {
+                $("body").css("overflow", "hidden");
                 $("#modal_education").css("display", "flex").fadeIn(200)
             })
 
             $("#button_skill").click(()=> {
+                $("body").css("overflow", "hidden");
                 $("#modal_skill").css("display", "flex").fadeIn(200)
             })
 
@@ -357,6 +400,7 @@
                 $("#modal_work").fadeOut(200)
                 $("#modal_education").fadeOut(200)
                 $("#modal_skill").fadeOut(200)
+                $("body").css("overflow", "");
             })
         })
     </script>

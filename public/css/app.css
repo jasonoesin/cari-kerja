@@ -522,6 +522,10 @@ video {
 .z-10 {
   z-index: 10;
 }
+.my-\[2rem\] {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 .mt-16 {
   margin-top: 4rem;
 }
@@ -580,20 +584,11 @@ video {
   height: -moz-fit-content;
   height: fit-content;
 }
-.h-\[100vh\] {
-  height: 100vh;
-}
 .h-full {
   height: 100%;
 }
-.h-12 {
-  height: 3rem;
-}
-.h-20 {
-  height: 5rem;
-}
-.h-\[20rem\] {
-  height: 20rem;
+.h-\[100vh\] {
+  height: 100vh;
 }
 .h-\[8rem\] {
   height: 8rem;
@@ -609,6 +604,9 @@ video {
 }
 .min-h-\[10rem\] {
   min-height: 10rem;
+}
+.min-h-\[100vh\] {
+  min-height: 100vh;
 }
 .w-\[10rem\] {
   width: 10rem;
@@ -661,12 +659,6 @@ video {
 }
 .w-\[100vw\] {
   width: 100vw;
-}
-.w-10 {
-  width: 2.5rem;
-}
-.w-12 {
-  width: 3rem;
 }
 .min-w-\[40rem\] {
   min-width: 40rem;
@@ -749,6 +741,9 @@ video {
 }
 .overflow-x-clip {
   overflow-x: clip;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .rounded-\[50\%\] {
   border-radius: 50%;
@@ -949,10 +944,6 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.\!py-2 {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-}
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -968,11 +959,11 @@ video {
 .pb-12 {
   padding-bottom: 3rem;
 }
+.pt-\[6rem\] {
+  padding-top: 6rem;
+}
 .pt-\[3rem\] {
   padding-top: 3rem;
-}
-.\!pb-2 {
-  padding-bottom: 0.5rem !important;
 }
 .text-center {
   text-align: center;

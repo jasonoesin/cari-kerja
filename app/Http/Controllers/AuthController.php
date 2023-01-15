@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
+use App\Models\Experience;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +94,38 @@ class AuthController extends Controller
         $user = User::find(\auth()->user()->id);
         $user->description = $request->description;
         $user->save();
+
+        return redirect()->back();
+    }
+
+    public function add_experience(Request $request){
+        $request->validate([
+            'title'=>"required",
+            'type'=>"required",
+            'company_name'=>"required",
+            'description'=>"required",
+        ]);
+
+        $input = $request->except('_token');
+        $input['user_id'] = auth()->user()->id;
+
+        $data = Experience::create($input);
+
+        return redirect()->back();
+    }
+
+    public function add_education(Request $request){
+        $request->validate([
+            'school'=>"required",
+            'degree'=>"required",
+            'field_of_study'=>"required",
+
+        ]);
+
+        $input = $request->except('_token');
+        $input['user_id'] = auth()->user()->id;
+
+        $data = Education::create($input);
 
         return redirect()->back();
     }
