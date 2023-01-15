@@ -3,12 +3,17 @@
 @section('title', "Login")
 
 @section('content')
-    <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-12">
+    <div class="px-16 py-4 text-[1.2rem] flex flex-col gap-8 mt-8">
 
         <div class="!CONTAINER flex justify-center items-center">
             <form action="" method="post" class="min-w-[40rem] flex flex-col gap-8">
                 @csrf
-                <div class="text-center font-bold text-[2rem]">Sign In</div>
+                <div class="text-center font-bold text-[2rem] flex flex-col justify-center gap-4">
+                    <img class="object-contain h-[8rem]" src="{{url("logo.png")}}" alt=""/>
+                    <div class="">
+                        Sign In
+                    </div>
+                </div>
 
                 @if($errors->all())
                     <div class="text-[1rem] text-red-500 flex flex-col gap-2 bg-red-200 rounded px-4 py-2">

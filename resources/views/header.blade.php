@@ -1,6 +1,7 @@
 <header>
     <div class="fixed bg-white w-full text-black border-b px-16 py-4 flex justify-between z-[10]">
-        <div class="LEFT flex gap-4">
+        <div class="LEFT flex gap-4 max-h-5">
+            <img class="h-full" src="{{url("logo.png")}}" alt=""/>
             <a href="{{url('/jobs')}}" class="cursor-pointer">JOBS</a>
             <a href="{{url('/companies')}}" class="cursor-pointer">COMPANIES</a>
         </div>
