@@ -52,7 +52,8 @@ class JobController extends Controller
         $jobs = Company::find($id)->jobs()->paginate(9);
 
         return view('job',[
-            'jobs' =>$jobs
+            'jobs' =>$jobs,
+            'company' => Company::find($id)
         ]);
     }
 

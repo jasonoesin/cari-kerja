@@ -94,7 +94,7 @@
                         </svg>
 
                         <div class="">
-                            {{rand(1,4)}} active jobs
+                            {{count($item->jobs)}} active jobs
                         </div>
                     </div>
 

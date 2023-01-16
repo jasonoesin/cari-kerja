@@ -27,9 +27,14 @@
                             <div class="text-gray-500">Location</div>
                             <div class="">{{$company->address}}</div>
                         </div>
+
+                        <div class="grid grid-cols-2 w-[50%]">
+                            <div class="text-gray-500">Website</div>
+                            <a href="{{'https:\\' . $company->website}}" class="">{{$company->website}}</a>
+                        </div>
                         <div class="grid grid-cols-2 w-[50%]">
                             <div class="text-gray-500">Company Size</div>
-                            <div class="">{{rand(10, 100)}} employees</div>
+                            <div class="">{{$company->size}} employees</div>
                         </div>
                     </div>
 
