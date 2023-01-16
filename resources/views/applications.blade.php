@@ -28,7 +28,7 @@
                                 @php
                                 $img = $apply->job->company->image
                                 @endphp
-                                <img class="w-[7rem] h-[7rem] object-cover" src="{{url("storage/$img")}}" alt=""/>
+                                <img class="w-[7rem] h-[7rem] object-cover" src="{{url("$img")}}" alt=""/>
                             @endif
                         </div>
 

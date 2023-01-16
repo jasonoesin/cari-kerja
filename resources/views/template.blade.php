@@ -10,6 +10,7 @@
         @yield('title')
     </title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+{{--    <link rel="stylesheet" href="/css/app.css/"> FOR WEBHOSTING --}}
     <style>
         .content{
             font-weight: normal;

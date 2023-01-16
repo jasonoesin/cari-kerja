@@ -52,10 +52,15 @@ class CompanyController extends Controller
 
         $extension = $infoPath['extension'];
 
-        Storage::disk("public")->putFileAs('/company/' . $company->id , $request->file('logo'), "logo.".$extension);
+//        Storage::disk("public")->putFileAs('/company/' . $company->id , $request->file('logo'), "logo.".$extension); // WITH STORAGE LINK
+//        $destinationPath = '../public_html/image/company/'.$company->id; BUAT YANG HOSTING DI 000WEB
+
+        $destinationPath = 'image/company/'.$company->id;
+
+        $request->logo->move(public_path($destinationPath), "logo.". $extension);
 
         $company->user_id = Auth::user()->id;
-        $company->image = "/company/" . $company->id . "/logo.". $extension;
+        $company->image = "image/company/" . $company->id . "/logo.". $extension;
         $company->save();
 
         return redirect('company/' . $company->id);

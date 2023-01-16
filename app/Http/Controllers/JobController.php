@@ -71,9 +71,13 @@ class JobController extends Controller
             'resume'=> ''
         ]);
 
-        Storage::disk("public")->putFileAs('/apply/' . auth()->user()->id , $request->file('resume'), $id . "_resume.pdf");
+        $destinationPath = 'data/apply/'. auth()->user()->id;
 
-        $apply->resume = "/apply/" . auth()->user()->id . "/". $id . "_resume.pdf";
+        $request->file('resume')->move(public_path($destinationPath), $id . "_resume.pdf");
+
+//        Storage::disk("public")->putFileAs('/apply/' . auth()->user()->id , $request->file('resume'), $id . "_resume.pdf");
+
+        $apply->resume = "data/apply/" . auth()->user()->id . "/". $id . "_resume.pdf";
         $apply->save();
 
         return redirect()->back();

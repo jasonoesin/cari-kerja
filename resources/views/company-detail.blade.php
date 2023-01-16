@@ -11,7 +11,7 @@
                         @if(Str::contains($company->image, 'http'))
                             <img class="w-[7rem] h-[7rem] object-cover" src="{{$company->image}}" alt=""/>
                         @else
-                            <img class="w-[7rem] h-[7rem] object-cover" src="{{url("storage/$company->image")}}" alt=""/>
+                            <img class="w-[7rem] h-[7rem] object-cover" src="{{url("$company->image")}}" alt=""/>
                         @endif
                     </div>
 

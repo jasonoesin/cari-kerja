@@ -18,7 +18,7 @@
                     @php
                         $url = $job->company->image
                     @endphp
-                    <img class="w-[5rem] h-[5rem] object-cover" src="{{url("storage/$url")}}" alt=""/>
+                    <img class="w-[5rem] h-[5rem] object-cover" src="{{url("$url")}}" alt=""/>
                 </div>
 
                 <div class="flex flex-col">
