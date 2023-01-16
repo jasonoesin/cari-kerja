@@ -78,8 +78,65 @@
                 <div class="w-[75%]">
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">WORK EXPERIENCES</div>
 
-                    <div class="px-2 py-8 text-center flex flex-col gap-4">
-                        <div class="">77.9% of employers surveyed consider work experience to be a crucial data point in job applications. So be sure to fill up this section to raise your chances of securing an interview!</div>
+                    <div class="px-2 py-8 flex flex-col gap-4">
+                        @if(auth()->user()->experiences)
+                            @foreach(auth()->user()->experiences as $experience)
+                                @if($loop->index == 0)
+                                    <div class="flex flex-col relative">
+                                        <div class="font-bold">
+                                            {{$experience->title}}
+                                        </div>
+                                        <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                            <div class="">
+                                                {{$experience->company_name}},
+                                            </div>
+                                            <div class="">
+                                                {{$experience->type}}
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            {{$experience->description}}
+                                        </div>
+
+                                        <form action="{{route('profile.experience.delete', [$id = $experience->id])}}" method="post" class="">
+                                            @csrf
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-[35%] right-4 cursor-pointer">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="flex flex-col border-t pt-2 border-t-black/40 relative">
+                                        <div class="font-bold">
+                                            {{$experience->title}}
+                                        </div>
+                                        <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                            <div class="">
+                                                {{$experience->company_name}},
+                                            </div>
+                                            <div class="">
+                                                {{$experience->type}}
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            {{$experience->description}}
+                                        </div>
+                                        <form action="{{route('profile.experience.delete', [$id = $experience->id])}}" method="post" class="">
+                                            @csrf
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-[35%] right-4 cursor-pointer">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                        <div class="text-center">77.9% of employers surveyed consider work experience to be a crucial data point in job applications. So be sure to fill up this section to raise your chances of securing an interview!</div>
+                        @endif
                         <div class="w-full flex justify-center">
                             <button id="button_work" class="font-bold text-blue-600 flex justify-center gap-2 px-4 py-2 hover:bg-gray-200 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -95,8 +152,60 @@
                 <div class="w-[75%]">
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">EDUCATIONS</div>
 
-                    <div class="px-2 py-8 text-center flex flex-col gap-4">
-                        <div class="">Companies aren’t into flings. They want to know all about you. Share where you studied to get 23% more interviews.</div>
+                    <div class="px-2 py-8  flex flex-col gap-4">
+                        @if(auth()->user()->educations)
+                            @foreach(auth()->user()->educations as $education)
+                                @if($loop->index == 0)
+                                    <div class="flex flex-col relative">
+                                        <div class="font-bold">
+                                            {{$education->school}}
+                                        </div>
+                                        <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                            <div class="">
+                                                {{$education->degree}},
+                                            </div>
+                                            <div class="">
+                                                {{$education->field_of_study}}
+                                            </div>
+                                        </div>
+                                        <form action="{{route('profile.education.delete', [$id = $education->id])}}" method="post" class="">
+                                            @csrf
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-[35%] right-4 cursor-pointer">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="flex flex-col border-t pt-2 border-t-black/40 relative">
+                                        <div class="font-bold">
+                                            {{$education->school}}
+                                        </div>
+                                        <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                            <div class="">
+                                                {{$education->degree}},
+                                            </div>
+                                            <div class="">
+                                                {{$education->field_of_study}}
+                                            </div>
+                                        </div>
+
+                                        <form action="{{route('profile.education.delete', [$id = $education->id])}}" method="post" class="">
+                                            @csrf
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-[35%] right-4 cursor-pointer">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+
+                            @endforeach
+                        @else
+                        <div class="text-center">Companies aren’t into flings. They want to know all about you. Share where you studied to get 23% more interviews.</div>
+                        @endif
                         <div class="w-full flex justify-center">
                             <button id="button_education" class="font-bold text-blue-600 flex justify-center gap-2 px-4 py-2 hover:bg-gray-200 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

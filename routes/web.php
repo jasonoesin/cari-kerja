@@ -53,7 +53,9 @@ Route::get('profile',[AuthController::class, "profile"])->middleware('isLoggedIn
 Route::post('profile/skills',[AuthController::class, "add_skill"])->middleware('isLoggedIn')->name('profile.skill');
 Route::post('profile/description',[AuthController::class, "add_description"])->middleware('isLoggedIn')->name('profile.description');
 Route::post('profile/experience',[AuthController::class, "add_experience"])->middleware('isLoggedIn')->name('profile.experience');
+Route::post('profile/experience/{id}',[AuthController::class, "delete_experience"])->middleware('isLoggedIn')->name('profile.experience.delete');
 Route::post('profile/education',[AuthController::class, "add_education"])->middleware('isLoggedIn')->name('profile.education');
+Route::post('profile/education/{id}',[AuthController::class, "delete_education"])->middleware('isLoggedIn')->name('profile.education.delete');
 
 
 Route::get('logout',[AuthController::class, "logout"]);

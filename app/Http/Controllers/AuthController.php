@@ -129,4 +129,14 @@ class AuthController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete_experience(Request $request, $id){
+        Experience::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function delete_education(Request $request, $id){
+        Education::find($id)->delete();
+        return redirect()->back();
+    }
 }
