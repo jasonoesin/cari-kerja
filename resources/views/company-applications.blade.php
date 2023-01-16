@@ -78,34 +78,130 @@
                     @foreach($applies as $apply)
                         <div class="product bg-gray-100 max-w-[50rem] w-[50rem] relative drop-shadow-lg">
                             <div class="bg-blue-200 px-4 py-2">Apply Date on {{$apply->created_at->format('d.m.Y')}}</div>
-                            <div class="!TOP flex gap-8 flex relative w-full items-center px-4">
-                                <div class="w-[10rem] h-[10rem] flex items-center justify-center">
-                                    @if(Str::contains($apply->job->company->image, 'http'))
-                                        <img class="w-[7rem] h-[7rem] object-cover" src="{{$apply->job->company->image}}" alt=""/>
-                                    @else
-                                        @php
-                                            $img = $apply->job->company->image
-                                        @endphp
-                                        <img class="w-[7rem] h-[7rem] object-cover" src="{{url("storage/$img")}}" alt=""/>
-                                    @endif
-                                </div>
-
-                                <div class="flex flex-col w-full gap-1">
+                            <div class="!TOP flex gap-8 flex relative w-full items-center px-4 py-2">
+                                <div class="flex flex-col w-full gap-2">
                                     <div class="font-semibold text-[2rem]">
-                                        <div class="">{{$apply->job->company->name}}</div>
+                                        <div class="">{{$apply->user->name}}</div>
                                         <div class="font-normal text-[1.2rem] flex flex-col">
-                                            <div class="">{{$apply->job->company->industry}}</div>
+                                            <div class="">{{$apply->user->email}}</div>
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-[25%_75%]">
                                         <div class="text-gray-500">Location</div>
-                                        <div class="">{{$apply->job->company->address}}</div>
+                                        <div class="">{{$apply->user->location}}</div>
                                     </div>
 
+                                    @if(json_decode($apply->user->skills))
                                     <div class="grid grid-cols-[25%_75%]">
-                                        <div class="text-gray-500">Job Title</div>
-                                        <div class="">{{$apply->job->title}}</div>
+                                        <div class="text-gray-500">Skills</div>
+                                        <div id="" class="flex flex-row gap-2 w-full flex-wrap max-w-[40rem]">
+
+                                                @foreach(json_decode($apply->user->skills) as $skill)
+                                                    <div class="cursor-pointer font-normal px-4 py-1 bg-[#f3f3f3] rounded-3xl border hover:bg-[#aaaaaa] w-fit">
+                                                        {{$skill}}
+                                                    </div>
+                                                @endforeach
+
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                    @if($apply->user->experiences && $apply->user->experiences->count() != 0)
+                                        <div class="grid grid-cols-[25%_75%] my-2">
+                                            <div class="text-gray-500">Experiences</div>
+                                            <div class="flex flex-col gap-4">
+                                                @foreach($apply->user->experiences as $experience)
+                                                    @if($loop->index == 0)
+                                                        <div class="flex flex-col relative">
+                                                            <div class="font-bold">
+                                                                {{$experience->title}}
+                                                            </div>
+                                                            <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                                                <div class="">
+                                                                    {{$experience->company_name}},
+                                                                </div>
+                                                                <div class="">
+                                                                    {{$experience->type}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="">
+                                                                {{$experience->description}}
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="flex flex-col border-t pt-2 border-t-black/40 relative">
+                                                            <div class="font-bold">
+                                                                {{$experience->title}}
+                                                            </div>
+                                                            <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                                                <div class="">
+                                                                    {{$experience->company_name}},
+                                                                </div>
+                                                                <div class="">
+                                                                    {{$experience->type}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="">
+                                                                {{$experience->description}}
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+
+
+                                    @if($apply->user->educations && $apply->user->educations->count() != 0)
+                                        <div class="grid grid-cols-[25%_75%] my-2">
+                                            <div class="text-gray-500">Educations</div>
+                                            <div class="flex flex-col gap-4">
+                                                @foreach($apply->user->educations as $education)
+                                                    @if($loop->index == 0)
+                                                        <div class="flex flex-col relative">
+                                                            <div class="font-bold">
+                                                                {{$education->school}}
+                                                            </div>
+                                                            <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                                                <div class="">
+                                                                    {{$education->degree}},
+                                                                </div>
+                                                                <div class="">
+                                                                    {{$education->field_of_study}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="flex flex-col border-t pt-2 border-t-black/40 relative">
+                                                            <div class="font-bold">
+                                                                {{$education->school}}
+                                                            </div>
+                                                            <div class="flex gap-1 text-[0.9rem] text-black/40 font-semibold">
+                                                                <div class="">
+                                                                    {{$education->degree}},
+                                                                </div>
+                                                                <div class="">
+                                                                    {{$education->field_of_study}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <div class="grid grid-cols-[25%_75%] items-center text-gray-500">
+                                        <div class="">Resume</div>
+                                        <a href="{{url("storage/$apply->resume")}}" download class="flex items-center gap-2 text-[0.9rem] font-semibold cursor-pointer hover:bg-gray-200 w-fit px-2 py-1 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                            </svg>
+                                            <div class="">Download</div>
+                                        </a>
+
+
                                     </div>
                                 </div>
                             </div>
