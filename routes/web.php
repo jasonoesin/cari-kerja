@@ -13,6 +13,9 @@ Route::get('/', function () {
 
 // Application
 Route::get('/applications', [ApplyController::class, 'index'])->middleware('isLoggedIn');
+Route::post('/apply/update/{id}', [ApplyController::class, 'update_apply'])->middleware('isLoggedIn')->name('apply.update');
+Route::post('/apply/decline/{id}', [ApplyController::class, 'decline_apply'])->middleware('isLoggedIn')->name('apply.decline');
+Route::post('/apply/accept/{id}', [ApplyController::class, 'accept_apply'])->middleware('isLoggedIn')->name('apply.accept');
 
 // Jobs Route
 Route::get('/jobs/bookmark', [BookmarkController::class, 'index'])->middleware('isLoggedIn');

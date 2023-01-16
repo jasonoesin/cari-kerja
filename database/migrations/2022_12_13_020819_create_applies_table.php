@@ -19,6 +19,7 @@ class CreateAppliesTable extends Migration
             $table->foreignId('job_id')->references('id')->on('jobs')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('phase')->default(0);
+            $table->boolean('accepted')->default(false);
             $table->timestamp('apply_date');
             $table->timestamps();
         });

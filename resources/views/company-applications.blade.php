@@ -114,34 +114,74 @@
                                 Apply Phase
                             </div>
 
-                            <div class="px-4 py-4 w-full flex flex-row grid grid-cols-4 relative mb-4">
-                                <div class="absolute w-[72%] bg-blue-300 h-0.5 top-6 left-[7rem]">
+                            <div class="px-4 py-4 w-full flex flex-row grid grid-cols-5 relative">
+                                <div class="absolute w-[76%] bg-blue-300 h-0.5 top-6 left-[6rem]">
                                 </div>
                                 <div class="flex flex-col items-center gap-2 relative">
-                                    <div class="h-5 w-5 bg-green-300 rounded-[50%]"></div>
+                                    <div class="h-5 w-5 {{$apply->phase == 0 ? "bg-green-300": "bg-blue-300"}} rounded-[50%]"></div>
                                     <div class="w-[10rem] text-center">
                                         Waiting for Company's Respond
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center gap-2 relative">
-                                    <div class="h-5 w-5 bg-blue-300 rounded-[50%]"></div>
+                                    <div class="h-5 w-5 {{$apply->phase == 1 ? "bg-green-300": "bg-blue-300"}} rounded-[50%]"></div>
                                     <div class="w-[10rem] text-center">
                                         Interview Details Sent By Email
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center gap-2 relative">
-                                    <div class="h-5 w-5 bg-blue-300 rounded-[50%]"></div>
+                                    <div class="h-5 w-5 {{$apply->phase == 2 ? "bg-green-300": "bg-blue-300"}} rounded-[50%]"></div>
                                     <div class="w-[10rem] text-center">
                                         Interview Phase
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center gap-2 relative">
-                                    <div class="h-5 w-5 bg-blue-300 rounded-[50%]"></div>
+                                    <div class="h-5 w-5 {{$apply->phase == 3 ? "bg-green-300": "bg-blue-300"}} rounded-[50%]"></div>
+                                    <div class="w-[10rem] text-center">
+                                        Waiting for Interview Results
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col items-center gap-2 relative">
+                                    <div class="h-5 w-5 {{$apply->phase == 4 ? "bg-green-300": "bg-blue-300"}} rounded-[50%]"></div>
                                     <div class="w-[10rem] text-center">
                                         Application Review Done
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="flex justify-center pb-6 pt-2">
+                                @if($apply->phase == 0)
+                                <form method="post" action="{{route('apply.update', [$id = $apply->id])}}">
+                                    @csrf
+                                    <button type="submit" class="hover:bg-blue-700 px-4 py-2 rounded font-bold text-gray-100 bg-blue-500">Interview Details have been sent to employee candidate</button>
+                                </form>
+                                @elseif($apply->phase == 2)
+                                    <form method="post" action="{{route('apply.update', [$id = $apply->id])}}">
+                                        @csrf
+                                        <button type="submit" class="hover:bg-blue-700 px-4 py-2 rounded font-bold text-gray-100 bg-blue-500">Interview had finished</button>
+                                    </form>
+
+                                @elseif($apply->phase == 3)
+                                    <div class="flex gap-8">
+                                        <form class="" method="post" action="{{route('apply.accept', [$id = $apply->id])}}">
+                                            @csrf
+                                            <button type="submit" class="hover:bg-green-700 px-4 py-2 rounded font-bold text-gray-100 bg-green-500">Accept Interviewee</button>
+                                        </form>
+                                        <form class="" method="post" action="{{route('apply.decline', [$id = $apply->id])}}">
+                                            @csrf
+                                            <button type="submit" class="hover:bg-red-700 px-4 py-2 rounded font-bold text-gray-100 bg-red-500">Decline Interviewee</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
+
+                            @if($apply->phase == 4)
+                                <div class="flex py-2 px-4 gap-4 mb-2">
+                                    <div class="text-gray-500">Status : </div>
+                                    <div class="{{$apply->accepted ? "text-green-400" : "text-red-400"}}">{{$apply->accepted ? "Accepted" : "Declined"}}</div>
+                                </div>
+                            @endif
                         </div>
                     @endforeach
                 </div>

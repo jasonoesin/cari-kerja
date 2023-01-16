@@ -79,7 +79,7 @@
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">WORK EXPERIENCES</div>
 
                     <div class="px-2 py-8 flex flex-col gap-4">
-                        @if(auth()->user()->experiences)
+                        @if(auth()->user()->experiences && auth()->user()->experiences->count() != 0)
                             @foreach(auth()->user()->experiences as $experience)
                                 @if($loop->index == 0)
                                     <div class="flex flex-col relative">
@@ -153,7 +153,7 @@
                     <div class="text-[1.5rem] font-bold pb-2 border-b border-b-2 border-black/30">EDUCATIONS</div>
 
                     <div class="px-2 py-8  flex flex-col gap-4">
-                        @if(auth()->user()->educations)
+                        @if(auth()->user()->educations && auth()->user()->educations->count() != 0)
                             @foreach(auth()->user()->educations as $education)
                                 @if($loop->index == 0)
                                     <div class="flex flex-col relative">
